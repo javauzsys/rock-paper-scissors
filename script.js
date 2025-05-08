@@ -4,7 +4,6 @@ function play(userChoice) {
   const computerChoiceEl = document.getElementById("computer-choice");
   const winnerEl = document.getElementById("winner");
 
-  // Tozalash
   countdownEl.innerText = "";
   userChoiceEl.innerText = "";
   computerChoiceEl.innerText = "";
@@ -18,8 +17,7 @@ function play(userChoice) {
     i++;
     if (i === steps.length) {
       clearInterval(interval);
-
-      // Keyin 0.5 sekunddan so'ng natijani ko'rsatamiz
+      
       setTimeout(() => {
         showResult(userChoice);
       }, 500);
