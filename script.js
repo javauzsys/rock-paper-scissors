@@ -1,29 +1,58 @@
 function play(userChoice) {
-  const choices = ['rock', 'paper', 'scissors'];
+  const countdownEl = document.getElementById("countdown");
+  const userChoiceEl = document.getElementById("user-choice");
+  const computerChoiceEl = document.getElementById("computer-choice");
+  const winnerEl = document.getElementById("winner");
+
+  // Tozalash
+  countdownEl.innerText = "";
+  userChoiceEl.innerText = "";
+  computerChoiceEl.innerText = "";
+  winnerEl.innerText = "";
+
+  const steps = ["Tosh...", "Qaychi...", "Qog‘oz!"];
+  let i = 0;
+
+  const interval = setInterval(() => {
+    countdownEl.innerText = steps[i];
+    i++;
+    if (i === steps.length) {
+      clearInterval(interval);
+
+      // Keyin 0.5 sekunddan so'ng natijani ko'rsatamiz
+      setTimeout(() => {
+        showResult(userChoice);
+      }, 500);
+    }
+  }, 1000);
+}
+
+function showResult(userChoice) {
+  const choices = ["rock", "paper", "scissors"];
   const computerChoice = choices[Math.floor(Math.random() * 3)];
 
-  document.getElementById('user-choice').innerText = `Siz tanladingiz: ${emoji(userChoice)}`;
-  document.getElementById('computer-choice').innerText = `Kompyuter tanladi: ${emoji(computerChoice)}`;
-  
-  let result = '';
+  document.getElementById("user-choice").innerText = `🧑 Siz: ${emoji(userChoice)}`;
+  document.getElementById("computer-choice").innerText = `🤖 Kompyuter: ${emoji(computerChoice)}`;
+
+  let result = "";
 
   if (userChoice === computerChoice) {
-    result = 'Durrang!';
+    result = "🤝 Durrang!";
   } else if (
-    (userChoice === 'rock' && computerChoice === 'scissors') ||
-    (userChoice === 'scissors' && computerChoice === 'paper') ||
-    (userChoice === 'paper' && computerChoice === 'rock')
+    (userChoice === "rock" && computerChoice === "scissors") ||
+    (userChoice === "scissors" && computerChoice === "paper") ||
+    (userChoice === "paper" && computerChoice === "rock")
   ) {
-    result = 'Siz yutdingiz! 🎉';
+    result = "🎉 Siz yutdingiz!";
   } else {
-    result = 'Kompyuter yutdi! 🤖';
+    result = "💀 Kompyuter yutdi!";
   }
 
-  document.getElementById('winner').innerText = result;
+  document.getElementById("winner").innerText = result;
 }
 
 function emoji(choice) {
-  return choice === 'rock' ? '🪨' :
-         choice === 'scissors' ? '✂️' :
-         '📄';
+  return choice === "rock" ? "👊 Tosh" :
+         choice === "scissors" ? "✌️ Qaychi" :
+         "🖐 Qog‘oz";
 }
